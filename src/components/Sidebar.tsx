@@ -8,7 +8,7 @@ import { Avatar, AvatarImage } from './ui/avatar';
 import { Separator } from './ui/separator';
 import { LinkIcon, MapPinIcon } from 'lucide-react';
 
-async function Sidebar(){
+export default async function Sidebar(){
 
     const authUser = await currentUser();
     if (!authUser) return <UnauthenticatedSidebar /> ;
@@ -83,4 +83,3 @@ async function Sidebar(){
   )
 }
 
-export default Sidebar

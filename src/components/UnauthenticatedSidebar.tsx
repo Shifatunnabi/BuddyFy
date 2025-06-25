@@ -5,7 +5,7 @@ import { Button } from './ui/button'
 import { Separator } from './ui/separator'
 
 
-async function UnauthenticatedSidebar(){
+export default async function UnauthenticatedSidebar(){
   return (
     <div className='sticky top-20'>
         <Card>
@@ -37,4 +37,3 @@ async function UnauthenticatedSidebar(){
   )
 }
 
-export default UnauthenticatedSidebar

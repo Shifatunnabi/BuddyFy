@@ -5,7 +5,7 @@ import { SignInButton, UserButton } from "@clerk/nextjs";
 import ModeToggle from "./ModeToggle";
 import { currentUser } from "@clerk/nextjs/server";  //for getting the current user
 
-async function DesktopNavbar() {
+export default async function DesktopNavbar() {
   const user = await currentUser();   //getting user here - has many info including img, mail, org
 
   return (
@@ -47,4 +47,3 @@ async function DesktopNavbar() {
     </div>
   );
 }
-export default DesktopNavbar;

@@ -1,3 +1,5 @@
+"use server"
+
 import { prisma } from "@/lib/prisma";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
@@ -47,4 +49,14 @@ export async function getUserByClerkId(clerkId : string){
     }
   })
 
+}
+
+export async function getDbUserId(){
+  const {userId : clerkId} = await auth();
+  if (!clerkId) throw new Error("Unauthenticated User");
+
+  const user = await getUserByClerkId(clerkId);
+  if(!user) throw new Error("User Not Found");
+
+  return user.id
 }

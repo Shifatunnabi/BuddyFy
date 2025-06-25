@@ -7,7 +7,7 @@ import { currentUser } from '@clerk/nextjs/server'
 import { syncUser } from '@/actions/user.action'
 
 
-async function Navbar(){
+export default async function Navbar(){
 
   const user = await currentUser();
   if (user) await syncUser();
@@ -30,4 +30,3 @@ async function Navbar(){
   )
 }
 
-export default Navbar
