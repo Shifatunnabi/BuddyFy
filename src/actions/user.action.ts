@@ -60,3 +60,45 @@ export async function getDbUserId(){
 
   return user.id
 }
+
+export async function getRandomUsers(){
+  try{
+    const userId = await getDbUserId();
+
+    //get 3 random user excluding the user himself and whoever he already follows
+
+    const randomUsers = await prisma.user.findMany({
+      where :{
+        AND: [
+          {NOT: {id: userId}}, 
+          {
+            NOT: {
+              followers:{
+                some:{
+                  followerId: userId
+                }
+              }
+            }
+          }
+        ]
+      },
+      select:{
+        id: true,
+        name: true,
+        username: true,
+        image: true,
+        _count:{
+          select:{
+            followers: true,
+          }
+        }
+      },
+      take: 3,
+    })
+
+    return randomUsers
+  }catch(error){
+    console.error("Error", error)
+    return []
+  }
+}
